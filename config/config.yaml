@@ -1,0 +1,9 @@
+app_info:
+    name: github.com/itmo-education/delivery-backend
+    version: 0.0.1
+    startup_duration: 10s
+data_sources: []
+server:
+    - name: rest
+      port: 8080
+environment: {}
