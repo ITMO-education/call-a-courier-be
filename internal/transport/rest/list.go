@@ -18,17 +18,15 @@ func (s *Server) ListContract(resp http.ResponseWriter, req *http.Request) {
 
 	contracts, err := s.data.List(c)
 	if err != nil {
-		_, _ = resp.Write([]byte(err.Error()))
 		resp.WriteHeader(http.StatusInternalServerError)
+		_, _ = resp.Write([]byte(err.Error()))
 		return
 	}
 
 	err = json.NewEncoder(resp).Encode(contracts)
 	if err != nil {
-		_, _ = resp.Write([]byte(err.Error()))
 		resp.WriteHeader(http.StatusInternalServerError)
+		_, _ = resp.Write([]byte(err.Error()))
 		return
 	}
-
-	resp.WriteHeader(http.StatusOK)
 }

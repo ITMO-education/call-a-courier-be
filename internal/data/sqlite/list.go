@@ -20,7 +20,7 @@ func (p *Provider) List(req domain.ListContractRequest) ([]domain.Contract, erro
 		    address,
 		    owner 
 		FROM contracts 
-		LIMIT $1 OFFSET $s 
+		LIMIT $1 OFFSET $2 
 `, req.Limit, req.Offset)
 	if err != nil {
 		return nil, errors.Wrap(err, "error listing contracts")

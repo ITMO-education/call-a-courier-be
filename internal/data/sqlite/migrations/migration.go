@@ -12,7 +12,7 @@ func Migrate(db *sql.DB) error {
 	for _, v := range []migFunc{v1} {
 		err := v(db)
 		if err != nil {
-			return errors.Wrap(err, "error performing migration")
+			return err
 		}
 	}
 
@@ -26,5 +26,9 @@ func v1(db *sql.DB) error {
 			owner VARCHAR(48)
 		);
 `)
-	return err
+	if err != nil {
+		return errors.Wrap(err, "error creating contracts table")
+	}
+
+	return nil
 }

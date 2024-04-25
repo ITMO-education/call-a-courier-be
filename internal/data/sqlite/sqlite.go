@@ -3,7 +3,8 @@ package sqlite
 import (
 	"database/sql"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
+	//_ "github.com/mattn/go-sqlite3"
 
 	errors "github.com/Red-Sock/trace-errors"
 
@@ -12,7 +13,7 @@ import (
 
 const (
 	inMemory = "file::memory:?mode=memory&cache=shared"
-	inFile   = "./sqlite-database.db"
+	inFile   = "./data/sqlite-database.db"
 )
 
 type Provider struct {
@@ -20,7 +21,7 @@ type Provider struct {
 }
 
 func New() (*Provider, error) {
-	conn, err := sql.Open("sqlite3", inFile)
+	conn, err := sql.Open("sqlite", inFile)
 	if err != nil {
 		return nil, errors.Wrap(err, "error opening database connection")
 	}
