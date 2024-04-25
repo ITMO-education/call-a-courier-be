@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Publish link
         id: link
-        run: echo "::set-output name=link::https://hub.docker.com/r/your-docker-username/your-image-name"
+        run: echo "link=https://hub.docker.com/r/your-docker-username/your-image-name">>$GITHUB_OUTPUT
 
       - name: Display link
         run: echo "Docker image published at ${{ steps.link.outputs.link }}"
