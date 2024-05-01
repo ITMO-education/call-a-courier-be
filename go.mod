@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/Red-Sock/trace-errors v0.0.5
-	github.com/godverv/matreshka v0.0.16
+	github.com/godverv/matreshka v0.0.17
 	github.com/pkg/errors v0.9.1
 	github.com/pressly/goose/v3 v3.20.0
 	github.com/rs/cors v1.10.1
@@ -42,5 +42,3 @@ require (
 	modernc.org/strutil v1.2.0 // indirect
 	modernc.org/token v1.1.0 // indirect
 )
-
-replace github.com/godverv/matreshka v0.0.16 => /Users/alexbukov/Yandex.Disk.localized/проекты/redsock/Matreshka
