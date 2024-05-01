@@ -24,8 +24,4 @@ LABEL MATRESHKA_CONFIG_ENABLED=true
 
 EXPOSE 8080
 
-RUN mkdir data
-
-VOLUME /app/data
-
 ENTRYPOINT ["./service"]

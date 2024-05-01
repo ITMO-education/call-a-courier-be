@@ -35,7 +35,11 @@ func main() {
 		return nil
 	})
 
-	db, err := sqlite.New()
+	sqliteDbConf, err := cfg.Resources().Sqlite(config.Sqlite)
+	if err != nil {
+		logrus.Fatalf("error loading sqlite database %s", err.Error())
+	}
+	db, err := sqlite.New(sqliteDbConf)
 	if err != nil {
 		logrus.Fatalf("can't open database: %s", err.Error())
 	}

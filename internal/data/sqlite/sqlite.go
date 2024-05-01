@@ -3,35 +3,49 @@ package sqlite
 import (
 	"database/sql"
 
+	"github.com/godverv/matreshka/resources"
+	"github.com/pressly/goose/v3"
+	"github.com/sirupsen/logrus"
 	_ "modernc.org/sqlite"
-	//_ "github.com/mattn/go-sqlite3"
 
 	errors "github.com/Red-Sock/trace-errors"
-
-	"github.com/itmo-education/delivery-backend/internal/data/sqlite/migrations"
 )
 
 const (
 	inMemory = "file::memory:?mode=memory&cache=shared"
-	inFile   = "./data/sqlite-database.db"
 )
 
 type Provider struct {
 	db *sql.DB
 }
 
-func New() (*Provider, error) {
-	conn, err := sql.Open("sqlite", inFile)
+func New(cfg *resources.Sqlite) (*Provider, error) {
+	conn, err := sql.Open("sqlite", cfg.Path)
 	if err != nil {
 		return nil, errors.Wrap(err, "error opening database connection")
 	}
 
-	err = migrations.Migrate(conn)
+	err = checkMigrate(conn)
 	if err != nil {
-		return nil, errors.Wrap(err, "error performing migrations")
+		return nil, errors.Wrap(err, "error checking migrations")
 	}
 
 	return &Provider{
 		db: conn,
 	}, nil
+}
+
+func checkMigrate(conn *sql.DB) error {
+	goose.SetLogger(logrus.StandardLogger())
+	err := goose.SetDialect("sqlite")
+	if err != nil {
+		return errors.Wrap(err, "error setting dialect")
+	}
+
+	err = goose.Up(conn, "./migrations")
+	if err != nil {
+		return errors.Wrap(err, "error performing up")
+	}
+
+	return nil
 }

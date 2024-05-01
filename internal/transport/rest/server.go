@@ -6,11 +6,11 @@ import (
 	"net/http"
 
 	errors "github.com/Red-Sock/trace-errors"
+	"github.com/godverv/matreshka"
 	"github.com/godverv/matreshka/api"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/itmo-education/delivery-backend/internal/config"
 	"github.com/itmo-education/delivery-backend/internal/data"
 )
 
@@ -22,7 +22,7 @@ type Server struct {
 	version string
 }
 
-func NewServer(cfg config.Config, server *api.Rest, db data.Data) *Server {
+func NewServer(cfg matreshka.Config, server *api.Rest, db data.Data) *Server {
 	r := http.NewServeMux()
 
 	s := &Server{
