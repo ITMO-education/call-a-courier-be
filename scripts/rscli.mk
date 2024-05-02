@@ -3,4 +3,4 @@ rscli-version:
 	@echo $(RSCLI_VERSION)
 
 buildc:
-	docker build -t call-a-courier-be:local --no-cache .
+	docker build -t redsockdev/call-a-courier-be:local --no-cache .

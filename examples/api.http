@@ -1,0 +1,11 @@
+### Save contract
+POST {{callCourierBE}}/contract
+Content-Type: application/json
+
+{
+  "tonAddress":  "EQC37D_7vwBP6fuMWuEbGtpSFBAZoujQqZzVAiYUXGrrSZkD",
+  "ownerAddress": "EQB5Bk8hiyoLtUw50CtvaqbIdhR7AJOBVSK9kGxxQ0Ko4oCs"
+}
+
+### List contracts
+GET {{callCourierBE}}/contract

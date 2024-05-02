@@ -25,6 +25,11 @@ func New(cfg *resources.Sqlite) (*Provider, error) {
 		return nil, errors.Wrap(err, "error opening database connection")
 	}
 
+	err = conn.Ping()
+	if err != nil {
+		return nil, errors.Wrap(err, "error pinging db")
+	}
+
 	err = checkMigrate(conn)
 	if err != nil {
 		return nil, errors.Wrap(err, "error checking migrations")
