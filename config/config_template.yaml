@@ -3,8 +3,8 @@ app_info:
     version: 0.0.1
     startup_duration: 10s
 data_sources:
-  - resource_name: sqlite
-    path: ./data/call-a-courier.db
+    - resource_name: sqlite
+      path: ./data/call-a-courier.db
 server:
     - name: rest
       port: 8080
