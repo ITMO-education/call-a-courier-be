@@ -2,6 +2,8 @@ package sqlite
 
 import (
 	"database/sql"
+	"os"
+	"path"
 
 	"github.com/godverv/matreshka/resources"
 	"github.com/pressly/goose/v3"
@@ -20,6 +22,11 @@ type Provider struct {
 }
 
 func New(cfg *resources.Sqlite) (*Provider, error) {
+	err := os.MkdirAll(path.Dir(cfg.Path), 0777)
+	if err != nil {
+		return nil, errors.Wrap(err, "error creating dir for sqlite db")
+	}
+
 	conn, err := sql.Open("sqlite", cfg.Path)
 	if err != nil {
 		return nil, errors.Wrap(err, "error opening database connection")
