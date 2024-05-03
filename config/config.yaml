@@ -1,10 +1,10 @@
 app_info:
     name: github.com/itmo-education/delivery-backend
-    version: v0.0.7
+    version: v0.0.8
     startup_duration: 10s
 data_sources:
-  - resource_name: sqlite
-    path: /app/call-a-courier.db
+    - resource_name: sqlite
+      path: /app/call-a-courier.db
 server:
     - name: rest
       port: 8080
